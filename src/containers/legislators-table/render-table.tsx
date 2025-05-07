@@ -12,7 +12,7 @@ type Props = {
   data: ILegislatorTableColumns[];
 };
 
-export default async function RenderLegislatorsTable({ data }: Props) {
+export default function RenderLegislatorsTable({ data }: Props) {
   const COLUMNS: ColumnDef<ILegislatorTableColumns>[] = [
     {
       accessorKey: "id",
