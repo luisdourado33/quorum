@@ -3,6 +3,7 @@
 import Card from "@/components/quick-card";
 import ServerBillsTable from "@/containers/bills-table";
 import ServerLegislatorTable from "@/containers/legislators-table";
+import ServerOverviewCards from "@/containers/server-overview-cards";
 import { RiBillLine, RiChatPollLine, RiQuillPenAiLine } from "@remixicon/react";
 import { Metadata } from "next";
 import { Suspense } from "react";
@@ -15,7 +16,10 @@ export async function metadata(): Promise<Metadata> {
 
 export default async function Home() {
   return (
-    <main className="flex flex-col h-full w-full items-center scroll-smooth">
+    <main
+      id="dashboard"
+      className="flex flex-col h-full w-full items-center scroll-smooth"
+    >
       <div className="container flex flex-col gap-y-4">
         <div className="flex flex-col gap-y-2">
           <h1 className="text-lg md:text-2xl font-bold">
@@ -27,42 +31,12 @@ export default async function Home() {
           </span>
         </div>
         <div className="grid col-span-1 md:grid-cols-4 gap-4">
-          {/* Votes */}
-          <Card>
-            <Card.Title>
-              <span className="flex items-center gap-x-1">
-                <RiChatPollLine className="text-quorum-primary" />
-                <span>Total Votes</span>
-              </span>
-            </Card.Title>
-            <Card.Description>
-              This is the total number of votes cast in the last election.
-            </Card.Description>
-
-            <Card.Content>
-              <div className="text-2xl font-bold">1,234,567</div>
-            </Card.Content>
-          </Card>
-
-          {/* Bills */}
-          <Card>
-            <Card.Title>
-              <span className="flex items-center gap-x-1">
-                <RiBillLine className="text-quorum-primary" />
-                <span>Bills</span>
-              </span>
-            </Card.Title>
-            <Card.Description>
-              This is the total number of bills passed in the last session.
-            </Card.Description>
-
-            <Card.Content>
-              <div className="text-2xl font-bold">1,234,567</div>
-            </Card.Content>
-          </Card>
+          <Suspense>
+            <ServerOverviewCards />
+          </Suspense>
 
           {/* Legislators Table */}
-          <Card className="col-span-1 md:col-span-4">
+          <Card id="legislators" className="col-span-1 md:col-span-4">
             <Card.Title>
               <span className="flex items-center gap-x-1">
                 <RiQuillPenAiLine className="text-quorum-primary" />
@@ -81,7 +55,7 @@ export default async function Home() {
           </Card>
 
           {/* Bills Table */}
-          <Card className="col-span-1 md:col-span-4">
+          <Card id="bills" className="col-span-1 md:col-span-4">
             <Card.Title>
               <span className="flex items-center gap-x-1">
                 <RiQuillPenAiLine className="text-quorum-primary" />

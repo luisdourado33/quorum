@@ -17,8 +17,8 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s / Quorum",
     default: "Quorum",
+    template: "%s / Quorum",
   },
   description: "Legislative data for the people",
 };
