@@ -27,7 +27,7 @@ export default function SearchText({
     <div
       className={twMerge([
         "flex items-center gap-x-2 p-2",
-        "border border-gray-300 hover:border-quorum-primary rounded-lg",
+        "border border-gray-200 dark:border-gray-300/10 hover:border-quorum-primary rounded-lg",
         "focus:ring-quorum-primary",
         "transition duration-200 ease-in-out",
       ])}

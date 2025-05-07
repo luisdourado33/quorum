@@ -390,11 +390,11 @@ export default function DataTable<T>({
           </TextButton>
         </div>
         <p className="text-sm tabular-nums text-gray-500 dark:text-gray-500 sm:hidden">
-          Página{" "}
+          Page{" "}
           <span className="font-medium text-gray-900 dark:text-gray-50">{`${
             table.getState().pagination.pageIndex + 1
           }`}</span>{" "}
-          de
+          of
           <span className="font-medium text-gray-900 dark:text-gray-50">
             {" "}
             {`${table.getPageCount()}`}
