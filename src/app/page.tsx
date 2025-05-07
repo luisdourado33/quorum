@@ -7,7 +7,7 @@ import ServerLegislatorTable from "@/containers/legislators-table";
 import ServerOverviewCards from "@/containers/server-overview-cards";
 import ServerOverviewCardsFallback from "@/containers/server-overview-cards/fallback";
 
-import { RiQuillPenAiLine } from "@remixicon/react";
+import { RiBillLine, RiQuillPenAiLine } from "@remixicon/react";
 import { Metadata } from "next";
 import { Suspense } from "react";
 
@@ -37,10 +37,9 @@ export default async function Home() {
           <Suspense fallback={<ServerOverviewCardsFallback />}>
             <ServerOverviewCards />
           </Suspense>
-        </div>
-        <div className="grid col-span-1 lg:grid-cols-4 gap-4">
+
           {/* Legislators Table */}
-          <Card id="legislators" className="col-span-1 md:col-span-2">
+          <Card id="legislators" className="col-span-3">
             <Card.Title>
               <span className="flex items-center gap-x-1">
                 <RiQuillPenAiLine className="text-quorum-primary" />
@@ -59,10 +58,10 @@ export default async function Home() {
           </Card>
 
           {/* Bills Table */}
-          <Card id="bills" className="col-span-1 md:col-span-2 h-full">
+          <Card id="bills" className="col-span-3 h-full">
             <Card.Title>
               <span className="flex items-center gap-x-1">
-                <RiQuillPenAiLine className="text-quorum-primary" />
+                <RiBillLine className="text-quorum-primary" />
                 <span>Bills</span>
               </span>
             </Card.Title>
