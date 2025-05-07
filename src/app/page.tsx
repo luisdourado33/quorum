@@ -3,6 +3,7 @@
 import Card from "@/components/quick-card";
 import ServerBillsTable from "@/containers/bills-table";
 import DataTableFallback from "@/containers/data-table/fallback";
+import InfoContainer from "@/containers/info-container";
 import ServerLegislatorTable from "@/containers/legislators-table";
 import ServerOverviewCards from "@/containers/server-overview-cards";
 import ServerOverviewCardsFallback from "@/containers/server-overview-cards/fallback";
@@ -23,7 +24,7 @@ export default async function Home() {
       id="dashboard"
       className="flex flex-col h-full w-full items-center scroll-smooth pb-12"
     >
-      <div className="container flex flex-col gap-y-4">
+      <div className="container flex flex-col gap-y-4 mb-4">
         <div className="flex flex-col gap-y-2">
           <h1 className="text-lg md:text-2xl font-bold bg-gradient-to-r from-quorum-primary to-quorum-secondary text-transparent bg-clip-text">
             Legislative Data Dashboard
@@ -32,6 +33,8 @@ export default async function Home() {
             Here you can find all the information you need about your
             representatives and the legislative process.
           </span>
+
+          <InfoContainer />
         </div>
         <div className="grid col-span-1 md:grid-cols-3 gap-4">
           <Suspense fallback={<ServerOverviewCardsFallback />}>
