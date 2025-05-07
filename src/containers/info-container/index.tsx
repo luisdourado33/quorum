@@ -25,7 +25,7 @@ export default function InfoContainer() {
     },
   ];
   return (
-    <div className="p-4 rounded-lg bg-white dark:bg-gray-800 shadow-md">
+    <div className="p-4 rounded-lg bg-white dark:bg-gray-900 shadow-md">
       <h1 className="text-lg md:text-lg font-bold bg-gradient-to-r from-quorum-primary to-quorum-secondary text-transparent bg-clip-text">
         What information can I find here?
       </h1>

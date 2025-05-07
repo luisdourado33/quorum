@@ -17,7 +17,7 @@ export default async function ServerOverviewCards() {
   );
 
   return (
-    <>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {/* Votes */}
       <Card>
         <Card.Title>
@@ -51,6 +51,6 @@ export default async function ServerOverviewCards() {
           <div className="text-2xl font-bold">{totalBills?.length || 0}</div>
         </Card.Content>
       </Card>
-    </>
+    </div>
   );
 }

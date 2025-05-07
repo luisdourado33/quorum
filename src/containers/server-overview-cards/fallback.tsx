@@ -7,7 +7,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 export default async function ServerOverviewCardsFallback() {
   return (
-    <>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {/* Votes */}
       <Card>
         <Card.Title>
@@ -49,6 +49,6 @@ export default async function ServerOverviewCardsFallback() {
           </div>
         </Card.Content>
       </Card>
-    </>
+    </div>
   );
 }
