@@ -3,10 +3,18 @@ import Card from "@/components/quick-card";
 import { RiChatPollLine, RiBillLine } from "@remixicon/react";
 import { getVotes } from "@/actions/votes";
 import { getBills } from "@/actions/bill";
+import { simulateServerRequest } from "@/lib/utils";
+import { DELAY_REQUEST_TIMEOUT } from "@/utils/delay";
 
 export default async function ServerOverviewCards() {
-  const totalVotes = await getVotes();
-  const totalBills = await getBills();
+  const totalVotes = await simulateServerRequest(
+    await getVotes(),
+    DELAY_REQUEST_TIMEOUT
+  );
+  const totalBills = await simulateServerRequest(
+    await getBills(),
+    DELAY_REQUEST_TIMEOUT
+  );
 
   return (
     <>

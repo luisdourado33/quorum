@@ -2,6 +2,9 @@ import React from "react";
 import Card from "@/components/quick-card";
 import { RiChatPollLine, RiBillLine } from "@remixicon/react";
 
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 export default async function ServerOverviewCardsFallback() {
   return (
     <>
@@ -18,7 +21,11 @@ export default async function ServerOverviewCardsFallback() {
         </Card.Description>
 
         <Card.Content>
-          <div className="text-2xl font-bold">1,234,567</div>
+          <div className="text-2xl font-bold">
+            <p className="w-[50px]">
+              <Skeleton count={1} className="bg-red-200 text-red-300" />
+            </p>
+          </div>
         </Card.Content>
       </Card>
 
@@ -35,7 +42,11 @@ export default async function ServerOverviewCardsFallback() {
         </Card.Description>
 
         <Card.Content>
-          <div className="text-2xl font-bold">1,234,567</div>
+          <div className="text-2xl font-bold">
+            <p className="w-[50px]">
+              <Skeleton count={1} className="bg-red-200 text-red-300" />
+            </p>
+          </div>
         </Card.Content>
       </Card>
     </>
