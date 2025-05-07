@@ -142,4 +142,5 @@ body {
   padding: 0;
   box-sizing: border-box;
   pointer-events: auto !important;
+  scroll-behavior: smooth !important;
 }
