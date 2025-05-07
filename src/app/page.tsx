@@ -1,101 +1,105 @@
-import Image from "next/image";
+"use server";
 
-export default function Home() {
+import Card from "@/components/quick-card";
+import ServerBillsTable from "@/containers/bills-table";
+import ServerLegislatorTable from "@/containers/legislators-table";
+import { RiBillLine, RiChatPollLine, RiQuillPenAiLine } from "@remixicon/react";
+import { Metadata } from "next";
+import { Suspense } from "react";
+
+export async function metadata(): Promise<Metadata> {
+  return {
+    title: "Homepage",
+  };
+}
+
+export default async function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main className="flex flex-col h-full w-full items-center scroll-smooth">
+      <div className="container flex flex-col gap-y-4">
+        <div className="flex flex-col gap-y-2">
+          <h1 className="text-lg md:text-2xl font-bold">
+            Welcome to the dashboard.
+          </h1>
+          <span className="text-xs md:text-sm text-gray-500">
+            Here you can find all the information you need about your
+            representatives and the legislative process.
+          </span>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <div className="grid col-span-1 md:grid-cols-4 gap-4">
+          {/* Votes */}
+          <Card>
+            <Card.Title>
+              <span className="flex items-center gap-x-1">
+                <RiChatPollLine className="text-quorum-primary" />
+                <span>Total Votes</span>
+              </span>
+            </Card.Title>
+            <Card.Description>
+              This is the total number of votes cast in the last election.
+            </Card.Description>
+
+            <Card.Content>
+              <div className="text-2xl font-bold">1,234,567</div>
+            </Card.Content>
+          </Card>
+
+          {/* Bills */}
+          <Card>
+            <Card.Title>
+              <span className="flex items-center gap-x-1">
+                <RiBillLine className="text-quorum-primary" />
+                <span>Bills</span>
+              </span>
+            </Card.Title>
+            <Card.Description>
+              This is the total number of bills passed in the last session.
+            </Card.Description>
+
+            <Card.Content>
+              <div className="text-2xl font-bold">1,234,567</div>
+            </Card.Content>
+          </Card>
+
+          {/* Legislators Table */}
+          <Card className="col-span-1 md:col-span-4">
+            <Card.Title>
+              <span className="flex items-center gap-x-1">
+                <RiQuillPenAiLine className="text-quorum-primary" />
+                <span>Legislators</span>
+              </span>
+            </Card.Title>
+            <Card.Description>
+              This is the total number of legislators from database.
+            </Card.Description>
+
+            <Card.Content>
+              <Suspense fallback={<div>Loading...</div>}>
+                <ServerLegislatorTable />
+              </Suspense>
+            </Card.Content>
+          </Card>
+
+          {/* Bills Table */}
+          <Card className="col-span-1 md:col-span-4">
+            <Card.Title>
+              <span className="flex items-center gap-x-1">
+                <RiQuillPenAiLine className="text-quorum-primary" />
+                <span>Bills</span>
+              </span>
+            </Card.Title>
+            <Card.Description>
+              Here you can see all bills with its respective stats
+            </Card.Description>
+
+            <Card.Content>
+              <Suspense fallback={<div>Loading...</div>}>
+                <ServerBillsTable />
+              </Suspense>
+            </Card.Content>
+          </Card>
+        </div>
+      </div>
+    </main>
   );
 }
