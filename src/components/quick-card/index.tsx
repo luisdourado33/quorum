@@ -22,7 +22,7 @@ export default function Card({
         "transition duration-300 ease-in-out transform",
         "dark:bg-gray-950",
         "hover:shadow-lg",
-        "w-auto h-fit",
+        "h-fit lg:w-auto",
         className,
       ])}
       {...otherDivProps}
@@ -45,7 +45,7 @@ Card.Description = function Description({ children }: CardSectionProps) {
 };
 
 Card.Content = function Content({ children }: CardSectionProps) {
-  return <div>{children}</div>;
+  return <div className="w-full h-full">{children}</div>;
 };
 
 Card.Footer = function Footer({ children }: CardSectionProps) {
