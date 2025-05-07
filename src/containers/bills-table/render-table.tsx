@@ -1,18 +1,32 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import DataTable from "../data-table";
 
 import { RiThumbDownFill, RiThumbUpFill } from "@remixicon/react";
 
 import { type GetBillsStatsResponse } from "@/types/bill";
 import { type ColumnDef } from "@tanstack/react-table";
+import SearchText from "@/components/search-text";
 
 type Props = {
   data: GetBillsStatsResponse[];
 };
 
 export default function RenderBillsTable({ data }: Props) {
+  const [storedData, setStoredData] = useState<typeof data>(data);
+
+  const handleOnSearch = (value: string): void => {
+    const filteredData = data.filter((bill) => {
+      return (
+        bill.title.toLowerCase().includes(value.toLowerCase()) ||
+        bill.id.toString().includes(value)
+      );
+    });
+
+    setStoredData(filteredData);
+  };
+
   const COLUMNS: ColumnDef<GetBillsStatsResponse>[] = [
     {
       accessorKey: "id",
@@ -52,5 +66,13 @@ export default function RenderBillsTable({ data }: Props) {
     },
   ];
 
-  return <DataTable data={data} columns={COLUMNS} />;
+  return (
+    <>
+      <SearchText
+        placeholder="Search by title or ID from the bill"
+        onSearch={handleOnSearch}
+      />
+      <DataTable data={storedData} columns={COLUMNS} />
+    </>
+  );
 }
