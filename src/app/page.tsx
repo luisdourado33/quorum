@@ -2,9 +2,12 @@
 
 import Card from "@/components/quick-card";
 import ServerBillsTable from "@/containers/bills-table";
+import DataTableFallback from "@/containers/data-table/fallback";
 import ServerLegislatorTable from "@/containers/legislators-table";
 import ServerOverviewCards from "@/containers/server-overview-cards";
-import { RiBillLine, RiChatPollLine, RiQuillPenAiLine } from "@remixicon/react";
+import ServerOverviewCardsFallback from "@/containers/server-overview-cards/fallback";
+
+import { RiQuillPenAiLine } from "@remixicon/react";
 import { Metadata } from "next";
 import { Suspense } from "react";
 
@@ -18,12 +21,12 @@ export default async function Home() {
   return (
     <main
       id="dashboard"
-      className="flex flex-col h-full w-full items-center scroll-smooth"
+      className="flex flex-col h-full w-full items-center scroll-smooth pb-12"
     >
       <div className="container flex flex-col gap-y-4">
         <div className="flex flex-col gap-y-2">
-          <h1 className="text-lg md:text-2xl font-bold">
-            Welcome to the dashboard.
+          <h1 className="text-lg md:text-2xl font-bold bg-gradient-to-r from-quorum-primary to-quorum-secondary text-transparent bg-clip-text">
+            Legislative Data Dashboard
           </h1>
           <span className="text-xs md:text-sm text-gray-500">
             Here you can find all the information you need about your
@@ -31,7 +34,7 @@ export default async function Home() {
           </span>
         </div>
         <div className="grid col-span-1 md:grid-cols-4 gap-4">
-          <Suspense>
+          <Suspense fallback={<ServerOverviewCardsFallback />}>
             <ServerOverviewCards />
           </Suspense>
 
@@ -48,7 +51,7 @@ export default async function Home() {
             </Card.Description>
 
             <Card.Content>
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<DataTableFallback />}>
                 <ServerLegislatorTable />
               </Suspense>
             </Card.Content>
@@ -67,7 +70,7 @@ export default async function Home() {
             </Card.Description>
 
             <Card.Content>
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<DataTableFallback />}>
                 <ServerBillsTable />
               </Suspense>
             </Card.Content>
