@@ -36,7 +36,7 @@ export default async function Home() {
 
           <InfoContainer />
         </div>
-        <div className="grid col-span-1 md:grid-cols-3 gap-4">
+        <div className="flex flex-col gap-4">
           <Suspense fallback={<ServerOverviewCardsFallback />}>
             <ServerOverviewCards />
           </Suspense>
