@@ -12,7 +12,7 @@ type Props = {
   data: GetBillsStatsResponse[];
 };
 
-export default async function RenderBillsTable({ data }: Props) {
+export default function RenderBillsTable({ data }: Props) {
   const COLUMNS: ColumnDef<GetBillsStatsResponse>[] = [
     {
       accessorKey: "id",
