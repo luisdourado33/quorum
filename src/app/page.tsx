@@ -33,13 +33,14 @@ export default async function Home() {
             representatives and the legislative process.
           </span>
         </div>
-        <div className="grid col-span-1 md:grid-cols-4 gap-4">
+        <div className="grid col-span-1 md:grid-cols-3 gap-4">
           <Suspense fallback={<ServerOverviewCardsFallback />}>
             <ServerOverviewCards />
           </Suspense>
-
+        </div>
+        <div className="grid col-span-1 lg:grid-cols-4 gap-4">
           {/* Legislators Table */}
-          <Card id="legislators" className="col-span-1 md:col-span-4">
+          <Card id="legislators" className="col-span-1 md:col-span-2">
             <Card.Title>
               <span className="flex items-center gap-x-1">
                 <RiQuillPenAiLine className="text-quorum-primary" />
@@ -58,7 +59,7 @@ export default async function Home() {
           </Card>
 
           {/* Bills Table */}
-          <Card id="bills" className="col-span-1 md:col-span-4">
+          <Card id="bills" className="col-span-1 md:col-span-2 h-full">
             <Card.Title>
               <span className="flex items-center gap-x-1">
                 <RiQuillPenAiLine className="text-quorum-primary" />
