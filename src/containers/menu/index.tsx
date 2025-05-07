@@ -10,7 +10,7 @@ export default function Menu() {
   return (
     <div
       className={twMerge([
-        "sticky top-0 left-0 z-50",
+        "sticky top-0 left-0 z-50 w-full",
         "flex w-full items-center justify-center",
         "shadow-sm",
         "backdrop-blur-2xl",

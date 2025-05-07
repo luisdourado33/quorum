@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import DataTable from "../data-table";
+import SearchText from "@/components/search-text";
 
 import { RiThumbDownFill, RiThumbUpFill } from "@remixicon/react";
 
@@ -13,6 +14,19 @@ type Props = {
 };
 
 export default function RenderLegislatorsTable({ data }: Props) {
+  const [storedData, setStoredData] = useState<typeof data>(data);
+
+  const handleOnSearch = (value: string): void => {
+    const filteredData = data.filter((legislator) => {
+      return (
+        legislator.name.toLowerCase().includes(value.toLowerCase()) ||
+        legislator.id.toString().includes(value)
+      );
+    });
+
+    setStoredData(filteredData);
+  };
+
   const COLUMNS: ColumnDef<ILegislatorTableColumns>[] = [
     {
       accessorKey: "id",
@@ -48,5 +62,13 @@ export default function RenderLegislatorsTable({ data }: Props) {
     },
   ];
 
-  return <DataTable data={data} columns={COLUMNS} />;
+  return (
+    <>
+      <SearchText
+        placeholder="Search by name or ID from legislator"
+        onSearch={handleOnSearch}
+      />
+      <DataTable data={storedData} columns={COLUMNS} />
+    </>
+  );
 }

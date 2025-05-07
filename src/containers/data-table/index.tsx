@@ -152,7 +152,7 @@ export default function DataTable<T>({
 
   return (
     <>
-      <TableRoot>
+      <TableRoot className="w-full">
         <Table>
           <TableHead>
             {table.getHeaderGroups().map((headerGroup) => (
